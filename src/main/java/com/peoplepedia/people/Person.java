@@ -3,6 +3,7 @@ package com.peoplepedia.people;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.bson.types.ObjectId;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,24 +12,21 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @Entity
-public class People {
+public class Person {
 
     @Id
-    @Column(unique=true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private ObjectId id;
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    private String id;
 
-    @Column(unique=true)
     @NotBlank
-    private String name;
+    private String firstName;
 
-    @Column(unique=true)
     @NotBlank
-    private String surname;
+    private String lastName;
 
-    @Column(unique=true)
     @NotBlank
-    private String birthday;
+    private Date birthday;
 
     @NotBlank
     private String role;
