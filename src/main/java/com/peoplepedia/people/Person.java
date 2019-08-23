@@ -42,5 +42,5 @@ public class Person {
     private String achievements;
 
     @OneToMany(mappedBy = "category")
-    private Category category;
+    private String categoryId;
 }
